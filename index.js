@@ -1,8 +1,9 @@
-require("dotenv");
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const Port = process.env.PORT;
+const Port = process.env.PORT || 3012;
+const HOST = process.env.HOST;
 const { showEventRoute, addEventRoute, deleteEventRoute, updateEventRoute } = require("./routers/event.route");
 const { registerCustomerRoute, getRegistrationsRoute, deleteRegistrationRoute } = require("./routers/registrationCustomer.route");
 // Allow multiple specific origins
@@ -32,6 +33,6 @@ app.use('/register-customer', registerCustomerRoute);
 app.use('/get-registrations', getRegistrationsRoute);
 app.use('/delete-registration', deleteRegistrationRoute);
 
-app.listen(Port ,() => {
-    console.log(`Server started succesfully at ${Port}`);
+app.listen(Port , HOST, () => {
+    console.log(`Server started succesfully at ${HOST}:${Port}`);
 })
