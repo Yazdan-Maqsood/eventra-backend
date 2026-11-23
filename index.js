@@ -1,11 +1,12 @@
+require("dotenv");
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const Port = 3012;
+const Port = process.env.PORT;
 const { showEventRoute, addEventRoute, deleteEventRoute, updateEventRoute } = require("./routers/event.route");
 const { registerCustomerRoute, getRegistrationsRoute, deleteRegistrationRoute } = require("./routers/registrationCustomer.route");
 // Allow multiple specific origins
-const allowedOrigins = ["http://localhost:3000", "http://localhost:3001"];
+const allowedOrigins = process.env.ORIGIN;
 
 app.use(cors({
   origin: function (origin, callback) {
